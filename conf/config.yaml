@@ -1,0 +1,33 @@
+# configurations:
+s3:
+  access_key: "AKIAQF6KR5DMS4EF7ZFC"
+  secret_key: "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"
+  endpoint_url: "" # "https://s3.amazonaws.com"
+  src_bucket: "ida-statement-of-credits-and-grants-historical-data"
+  trg_bucket: "ida-statement-of-credits-and-grants-report"
+source:
+  src_prefix: test
+  src_st_year: 2017
+  ida_st_year: "2010-01-01"
+  src_columns: ['Credit Number', 'Agreement Signing Date',
+               'Effective Date (Most Recent)', 'End of Period', 
+               'Region', 'Country', 'Credit Status',
+                'Service Charge Rate', 'Currency of Commitment',
+               'Original Principal Amount (US$)', 'Cancelled Amount (US$)',
+               'Undisbursed Amount (US$)', 'Disbursed Amount (US$)', 
+               'Repaid to IDA (US$)', 'Due to IDA (US$)', 
+               'Exchange Adjustment (US$)', 'Credits Held (US$)']
+# loggin
+logging:
+  version: 1
+  formatters:
+    IDA:
+      format: "[IDA Data Report] - %(asctime)s - %(levelname)s - %(message)s"
+  handlers:
+    console:
+      class: logging.StreamHandler
+      formatter: IDA
+      level: DEBUG
+  root:
+    level: DEBUG
+    handlers: [console]
