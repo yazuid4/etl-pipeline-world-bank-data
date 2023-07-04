@@ -15,4 +15,6 @@ class CS:
     CREDITS_HELD = 'Credits Held (US$)'
     SERVICE_CHARGE_RATE = 'Service Charge Rate'
     COMMITMENT_CURR = 'Currency of Commitment'
+
+    IDA_YEAR='ida_st_year'
  

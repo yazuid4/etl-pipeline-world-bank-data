@@ -2,14 +2,26 @@
 import os
 import yaml
 import logging, logging.config
+from dotenv import load_dotenv
 from src.transformer.etl_report import Config, IdaReport
 from src.utils.S3Connector import S3Connector
+from src.utils.statics import CS
 
+
+def load_config():
+    load_dotenv("env.list")
+    path = os.path.join(os.getcwd(), "conf", "config.yaml")
+    with open(path) as file:
+        yaml_content = file.read()
+    substituted_yaml = os.path.expandvars(yaml_content)
+    config = yaml.safe_load(substituted_yaml)
+    # cast date -> str
+    config["source"][CS.IDA_YEAR] = str(config["source"][CS.IDA_YEAR])
+    return config
 
 def main():
     # load config file:
-    path = os.path.join(os.getcwd(), "conf", "config.yaml")
-    config = yaml.safe_load(open(path))
+    config = load_config()
     # logger config:
     logging.config.dictConfig(config["logging"])
     logger = logging.getLogger(__name__)

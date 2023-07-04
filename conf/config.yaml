@@ -6,9 +6,9 @@ s3:
   src_bucket: "ida-statement-of-credits-and-grants-historical-data"
   trg_bucket: "ida-statement-of-credits-and-grants-report"
 source:
-  src_prefix: test
-  src_st_year: 2017
-  ida_st_year: "2010-01-01"
+  src_prefix: ${SRC_PREFIX}
+  src_st_year: ${SRC_ST_YEAR}
+  ida_st_year: ${IDA_ST_YEAR}
   src_columns: ['Credit Number', 'Agreement Signing Date',
                'Effective Date (Most Recent)', 'End of Period', 
                'Region', 'Country', 'Credit Status',
